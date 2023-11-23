@@ -61,7 +61,7 @@ void UserInterface::addProductToCart() {
 
             cartProductIndices.push_back(std::distance(catalog.getProducts().begin(), it));
 
-            shoppingCart.push_back(order);
+            shoppingCart.push_back(std::move(order));//implement move constructor for order class
             std::cout << "Product added to the cart." << std::endl;
         } else {
             std::cout << "Invalid quantity or product is out of stock." << std::endl;
@@ -123,7 +123,7 @@ void UserInterface::proceedToCheckout() {
     checkoutOrder.changeOrderStatus("Paid");
 
 
-    orderHistory.push_back(checkoutOrder);
+    orderHistory.push_back(std::move(checkoutOrder));
 
 
     shoppingCart.clear();

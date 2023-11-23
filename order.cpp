@@ -3,6 +3,18 @@
 Order::Order(int orderID, const std::string& customer)
         : orderID(orderID), customer(customer), totalCost(0.0), orderStatus("Pending") {}
 
+// Move constructor implementation
+Order::Order(Order&& other) noexcept
+        : orderID(other.orderID),
+          customer(std::move(other.customer)),
+          products(std::move(other.products)),
+          totalCost(other.totalCost),
+          orderStatus(std::move(other.orderStatus)) {
+
+    other.orderID = 0;
+    other.totalCost = 0.0;
+}
+
 void Order::addProduct(const std::shared_ptr<Product>& product, int quantity) {
     if (product->getQuantityInStock() >= quantity) {
         products.push_back(std::make_pair(product, quantity));

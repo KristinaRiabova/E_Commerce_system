@@ -1,3 +1,4 @@
+// Order.h
 #ifndef ORDER_H
 #define ORDER_H
 
@@ -10,6 +11,9 @@
 class Order {
 public:
     Order(int orderID, const std::string& customer);
+    // Move constructor
+    Order(Order&& other) noexcept;
+
     void addProduct(const std::shared_ptr<Product>& product, int quantity);
     double calculateTotalCost() const;
     void changeOrderStatus(const std::string& status);
@@ -27,4 +31,5 @@ private:
     std::string orderStatus;
 };
 
-#endif // ORDER_H
+#endif
+
