@@ -17,10 +17,13 @@ void Inventory::manageStock(int productID, int quantity) {
 
             (*it)->setQuantityInStock((*it)->getQuantityInStock() - quantity);
 
+            if ((*it)->getQuantityInStock() == 0) {
 
-            productCatalog.updateProduct((*it)->getProductID(), *it);
+                productCatalog.removeProduct((*it)->getProductID());
+            } else {
 
-
+                productCatalog.updateProduct((*it)->getProductID(), *it);
+            }
 
 
             std::cout << "Stock updated for " << (*it)->getName() << ". Remaining quantity: " << (*it)->getQuantityInStock() << std::endl;
@@ -32,23 +35,13 @@ void Inventory::manageStock(int productID, int quantity) {
     }
 }
 
+
 void Inventory::notifyLowStock(const std::vector<Order>& shoppingCart) const {
-    // Check products in the inventory
-    for (const auto& product : products) {
+
+    for (const auto& product : productCatalog.getProducts()) {
         if (product->getQuantityInStock() < lowStockThreshold) {
             std::cout << "Low stock for " << product->getName() << ". Current quantity: " << product->getQuantityInStock() << std::endl;
         }
     }
-
-
-    for (const auto& order : shoppingCart) {
-        for (const auto& cartItem : order.getProducts()) {
-            const Product& product = *(cartItem.first);
-            int quantityInCart = cartItem.second;
-
-            if (quantityInCart > 0 && quantityInCart < lowStockThreshold) {
-                std::cout << "Low stock for " << product.getName() << ". Quantity in cart: " << quantityInCart << std::endl;
-            }
-        }
-    }
 }
+

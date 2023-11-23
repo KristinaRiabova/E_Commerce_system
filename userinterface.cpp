@@ -44,6 +44,7 @@ void UserInterface::run() {
 
 void UserInterface::addProductToCart() {
     int productId, quantity;
+
     std::cout << "Enter the product ID you want to add to the cart: ";
     std::cin >> productId;
 
@@ -75,6 +76,8 @@ void UserInterface::proceedToCheckout() {
         std::cout << "Your shopping cart is empty." << std::endl;
         return;
     }
+
+
 
     std::cout << "Shopping Cart Contents:\n";
     double totalCost = 0.0;
@@ -112,7 +115,7 @@ void UserInterface::proceedToCheckout() {
             checkoutOrder.addProduct(product, quantity);
 
             inventory.manageStock(product->getProductID(), quantity);
-            catalog.removeProduct(product->getProductID());
+
         }
 
 
@@ -124,6 +127,7 @@ void UserInterface::proceedToCheckout() {
 
 
     shoppingCart.clear();
+
 
     std::cout << "Order placed successfully. Thank you, " << customerName << "!" << std::endl;
 }
