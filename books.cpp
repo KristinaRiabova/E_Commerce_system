@@ -1,4 +1,5 @@
 #include "books.h"
+#include <iostream>
 
 Books::Books(int productID, const std::string& name, double price, int quantityInStock,
              const std::string& author, const std::string& genre, const std::string& ISBN)
@@ -18,4 +19,11 @@ std::string Books::getGenre() const {
 
 std::string Books::getISBN() const {
     return ISBN;
+}
+
+void Books::displayDetails() const {
+    std::cout << "Author: " << getAuthor() << "\n";
+    std::cout << "Genre: " << getGenre() << "\n";
+    std::cout << "ISBN: " << getISBN() << "\n";
+    Product::displayDetails();  // Assuming the base class has a displayDetails function
 }

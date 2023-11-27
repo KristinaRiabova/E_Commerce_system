@@ -9,10 +9,11 @@ public:
              const std::string& size, const std::string& color, const std::string& material);
 
     std::string getCategory() const override;
-
     std::string getSize() const;
     std::string getColor() const;
     std::string getMaterial() const;
+
+    void displayDetails() const override;
 
 private:
     std::string size;

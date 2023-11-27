@@ -3,12 +3,14 @@
 
 #include "product.h"
 
+
 class Electronics : public Product {
 public:
     Electronics(int productID, const std::string& name, double price, int quantityInStock,
                 const std::string& brand, const std::string& model, const std::string& powerConsumption);
 
     std::string getCategory() const override;
+    void displayDetails() const override;
 
     std::string getBrand() const;
     std::string getModel() const;
@@ -20,4 +22,4 @@ private:
     std::string powerConsumption;
 };
 
-#endif // ELECTRONICS_H
+#endif
