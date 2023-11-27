@@ -1,6 +1,6 @@
+// product.cpp
 #include "product.h"
-
-// Implementation of the Product class
+#include <iostream>
 
 Product::Product(int productID, const std::string& name, double price, int quantityInStock)
         : productID(productID), name(name), price(price), quantityInStock(quantityInStock) {}
@@ -42,4 +42,11 @@ void Product::setPrice(double newPrice) {
 
 void Product::setQuantityInStock(int newQuantity) {
     quantityInStock = newQuantity;
+}
+
+void Product::displayDetails() const {
+    std::cout << "Product ID: " << getProductID() << "\n";
+    std::cout << "Name: " << getName() << "\n";
+    std::cout << "Price: $" << getPrice() << "\n";
+    std::cout << "In Stock: " << getQuantityInStock() << "\n\n";
 }

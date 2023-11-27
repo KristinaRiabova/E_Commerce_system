@@ -1,17 +1,18 @@
+// product.h
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
-#include <iostream>
 #include <string>
-#include <memory>
 
 class Product {
 public:
     Product(int productID, const std::string& name, double price, int quantityInStock);
+    virtual ~Product() = default;
+
     double calculateTotalCost(int quantity) const;
     virtual void displayInfo() const;
     virtual std::string getCategory() const = 0;
-    virtual ~Product() = default;
+    virtual void displayDetails() const = 0;
 
     int getProductID() const;
     std::string getName() const;
